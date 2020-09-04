@@ -1,13 +1,16 @@
 
 <template>
-	<view class="playList clear borderColorBottom" @click="check(info)">
-		<view class="fl">
+	<view class="playList clear borderColorBottom" >
+		<view class="fl" @click="check(info)">
 			<view class="name">
 			{{info.mainSong.name.length>10? info.mainSong.name.substring(0,10)+"...":info.mainSong.name}}
 			</view>
 		</view>
+
 		<image class="fr playListGengduo" src="../static/image/icon/gengduoHui.png"></image>
-		<image class="fr playListBofang" src="../static/image/icon/kaishiH.png"></image>
+		
+		<image v-if="!isShow" class="fr playListBofang" src="../static/image/icon/kaishiH.png" @click="changeStart(info)"></image>
+		<image v-else-if="isShow" class="fr playListBofang" src="../static/image/icon/zantingH.png"  @click="changeStop"></image>
 	</view>
 </template>
 
@@ -20,15 +23,36 @@
 		},
 		data() {
 			return {
-				
+				isShow:false,
+				muData:{},
 			};
 		},
 		mounted() {
-			
+		
 		},
 		methods:{
 			check(item){
+	
+				this.isShow=!this.isShow
+		
+				this.muData=item
 				this.$emit('checkData',item)
+			},
+			changeStart(item){
+				
+				this.isShow=!this.isShow
+				if(JSON.stringify(this.muData)==="{}"){
+					this.$emit('checkData',item)
+				}else{
+					console.log("=====1>>>")
+					console.log(this.muData)
+					this.$emit('changeStart')
+				}
+			},
+			changeStop(){
+				console.log("=====>2>>")
+				this.isShow=!this.isShow
+				this.$emit('changeStop')
 			}
 		}
 	}

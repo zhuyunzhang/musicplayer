@@ -3,9 +3,9 @@
 		<swiper class="swiper">
 			<swiper-item>
 				<view class="swiper-item">
-					<allplay @playAll='playAll'></allplay>
+					<allplay @playAll='playAll' @changeStop='changeStop'></allplay>
 					<scroll-view scroll-y="true" class="scroll-Y">
-						<playlistRadio v-for="item in newList" :info="item" @checkData='checkData'></playlistRadio>
+						<playlistRadio v-for="item in newList" :info="item" @checkData='checkData' @changeStart='changeStart' @changeStop='changeStop'></playlistRadio>
 					</scroll-view>
 				</view>
 			</swiper-item>
@@ -48,7 +48,7 @@
 		},
 		methods: {
 			audioInit(musicData){
-				
+				console.log(musicData)
 				let src = musicData[0].src
 				uni.setStorageSync('src',src)
 				src=uni.getStorageSync('src')
@@ -76,10 +76,12 @@
 			playAll(msg){
 				this.isShow=true
 				this.flagMsg=msg
+				this.newList[0].flag=true
 				this.checkData(this.newList[0])
 				
 			},
 			checkData(data){
+				console.log(data)
 				this.isShow=true
 				this.musicPlay.img=data.coverUrl
 				this.musicPlay.name=data.mainSong.name
@@ -93,8 +95,10 @@
 				let musicData=[]
 				listing(url+'song/url?id='+data.mainSong.id)
 				.then((res)=>{
+			
 					let option={
-						src:res.data[0].url
+						src:res.data[0].url,
+						name:data.name
 					}
 				
 					musicData.push(option)
@@ -136,8 +140,9 @@
 			if(innerAudioContext!==''){
 				this.isShow=true
 			}
-			this.musicPlay=JSON.parse(uni.getStorageSync('musicData'))
-		
+			if(uni.getStorageSync('musicData') !==null ){
+				this.musicPlay=JSON.parse(uni.getStorageSync('musicData'))
+			}
 			this.getMusicData()
 			
 			

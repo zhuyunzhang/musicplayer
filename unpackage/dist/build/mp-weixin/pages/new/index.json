@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "zyz云音乐",
+  "usingComponents": {
+    "allplay": "/components/allpaly",
+    "playlist": "/components/playlist",
+    "play-bot": "/components/playbot",
+    "album": "/components/album"
+  }
+}

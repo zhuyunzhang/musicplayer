@@ -58,8 +58,8 @@ export default {
 			songBanner:[],
 			autoplay:true,
 			isShow:false,
-			musicPlay:JSON.parse(uni.getStorageSync('musicData')),
-			flagStart:uni.getStorageSync('flagStart'),
+			musicPlay:[],
+			flagStart:false,
 			imgSrc:'../../static/image/',
 			bannerData:[],
 			content:[],
@@ -191,7 +191,6 @@ export default {
 		},
 		
 		tab : function (str,param){
-			
 			if(param.song!==null){
 				this.changeStop()
 				let audioList=[]
