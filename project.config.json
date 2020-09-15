@@ -21,6 +21,8 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -34,7 +36,7 @@
   },
   "compileType": "miniprogram",
   "libVersion": "2.0.4",
-  "appid": "touristappid",
+  "appid": "wxac8bf56749c5b6e7",
   "projectname": "musicplayer",
   "cloudfunctionTemplateRoot": "",
   "watchOptions": {
