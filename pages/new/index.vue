@@ -15,6 +15,7 @@
 						</scroll-view>
 					</view>
 				</swiper-item>
+				
 				<swiper-item>
 					<view class="swiper-item">
 						<view class="newDiscSel">
